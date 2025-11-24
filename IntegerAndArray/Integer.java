@@ -1,3 +1,5 @@
+package IntegerAndArray;
+
 import java.util.Scanner;
 //1
 public class Integer {
