@@ -47,6 +47,57 @@ public class TreeNode {
     }
 
     /**
+     * 根据指定节点数量创建平衡二叉搜索树
+     * @param size 节点数量
+     * @return 二叉搜索树的根节点
+     */
+    public static TreeNode createBalancedBST(int size) {
+        if (size <= 0) {
+            return null;
+        }
+
+        // 生成1到size*2的随机数集合
+        java.util.Set<Integer> values = new java.util.HashSet<>();
+        Random random = new Random();
+
+        while (values.size() < size) {
+            int num = random.nextInt(size * 2) + 1; // 范围：1 到 size*2
+            values.add(num);
+        }
+
+        // 将集合转换为数组并排序
+        int[] nums = values.stream().mapToInt(Integer::intValue).toArray();
+        java.util.Arrays.sort(nums);
+
+        // 使用中序遍历构建平衡BST
+        return buildBalancedBST(nums, 0, nums.length - 1);
+    }
+
+    /**
+     * 递归构建平衡二叉搜索树
+     * @param nums 排序后的数值数组
+     * @param start 起始索引
+     * @param end 结束索引
+     * @return 平衡BST的根节点
+     */
+    private static TreeNode buildBalancedBST(int[] nums, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        // 选择中间元素作为根节点，确保平衡
+        int mid = start + (end - start) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+
+        // 递归构建左子树和右子树
+        root.left = buildBalancedBST(nums, start, mid - 1);
+        root.right = buildBalancedBST(nums, mid + 1, end);
+
+        return root;
+    }
+
+
+    /**
      * 打印树结构，包含箭头指示
      * @param root 树的根节点
      */
