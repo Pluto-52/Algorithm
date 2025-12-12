@@ -76,7 +76,6 @@ public class FindTarget {
         public LeftIterator(TreeNode root) {
             this.stack = new Stack<>();
             this.cur=root;
-            stack.push(root);
         }
 
         public boolean hasNext() {
@@ -103,7 +102,6 @@ public class FindTarget {
         public RightIterator(TreeNode root) {
             this.stack = new Stack<>();
             this.cur=root;
-            stack.push(root);
         }
 
         public boolean hasNext() {
