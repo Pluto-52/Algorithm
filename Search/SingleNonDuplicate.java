@@ -1,4 +1,4 @@
-package search;
+package Search;
 
 public class SingleNonDuplicate {
     public int singleNonDuplicate(int[] nums) {
